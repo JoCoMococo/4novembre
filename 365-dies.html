@@ -15,16 +15,25 @@
 
 body {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 35px 15px;
     font-family: 'Segoe UI', sans-serif;
     color: #51465e;
-    background: linear-gradient(135deg,
-        #e8dff5, #dce9f5, #f5e1e9, #f8eedf);
-    background-size: 300% 300%;
-    animation: backgroundMove 18s ease infinite;
+    background: linear-gradient(
+        120deg,
+        #e9ddf4,
+        #dceafa,
+        #f6e1e9,
+        #f8eddf,
+        #e1e8f5
+    );
+    background-size: 400% 400%;
+    animation: backgroundMove 20s ease infinite;
 }
 
 @keyframes backgroundMove {
@@ -33,101 +42,137 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.light {
+/* LLUMS DE FONS */
+
+.ambient {
     position: fixed;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.32);
-    filter: blur(90px);
+    inset: 0;
+    overflow: hidden;
     pointer-events: none;
-    top: -150px;
-    left: -150px;
+    z-index: 0;
 }
 
 .orb {
-    position: fixed;
+    position: absolute;
     border-radius: 50%;
-    filter: blur(45px);
-    opacity: 0.45;
-    pointer-events: none;
-    animation: float 12s ease-in-out infinite alternate;
+    filter: blur(65px);
+    opacity: 0.55;
+    animation: drift 18s ease-in-out infinite alternate;
 }
 
 .orb1 {
-    width: 260px;
-    height: 260px;
-    background: #e9c9e8;
-    bottom: -80px;
-    left: 5%;
+    width: 380px;
+    height: 380px;
+    background: #d8b9eb;
+    top: -120px;
+    left: -100px;
 }
 
 .orb2 {
-    width: 300px;
-    height: 300px;
-    background: #c9dff0;
-    top: 5%;
-    right: -80px;
-    animation-delay: -5s;
+    width: 430px;
+    height: 430px;
+    background: #b9d9ed;
+    bottom: -160px;
+    right: -100px;
+    animation-delay: -7s;
 }
 
 .orb3 {
-    width: 180px;
-    height: 180px;
-    background: #f5d8d0;
-    bottom: 10%;
-    right: 15%;
-    animation-delay: -3s;
+    width: 280px;
+    height: 280px;
+    background: #f2cbd9;
+    top: 45%;
+    left: 65%;
+    animation-delay: -11s;
 }
 
-@keyframes float {
-    from { transform: translateY(0) translateX(0); }
-    to { transform: translateY(-35px) translateX(20px); }
+.orb4 {
+    width: 250px;
+    height: 250px;
+    background: #f5dfbd;
+    top: 60%;
+    left: -100px;
+    animation-delay: -4s;
 }
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(80px, -45px) scale(1.15);
+    }
+    100% {
+        transform: translate(-35px, 55px) scale(0.9);
+    }
+}
+
+/* PARTÍCULES */
 
 .particles {
     position: fixed;
     inset: 0;
-    pointer-events: none;
     overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    bottom: -15px;
     border-radius: 50%;
     background: white;
-    opacity: 0.6;
+    box-shadow: 0 0 12px rgba(255,255,255,0.9);
     animation: rise linear infinite;
 }
 
 @keyframes rise {
-    from {
-        transform: translateY(110vh);
+    0% {
+        transform: translateY(0) translateX(0);
         opacity: 0;
     }
-    20% { opacity: 0.6; }
-    80% { opacity: 0.5; }
-    to {
-        transform: translateY(-10vh);
+    15% { opacity: 0.7; }
+    80% { opacity: 0.45; }
+    100% {
+        transform: translateY(-110vh) translateX(35px);
         opacity: 0;
     }
 }
 
+/* LLUM DEL CURSOR */
+
+.cursor-light {
+    position: fixed;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.27);
+    filter: blur(75px);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    transition: left 0.25s ease, top 0.25s ease;
+}
+
+/* TARGETA */
+
 .container {
     position: relative;
     z-index: 2;
-    width: min(90%, 650px);
-    padding: 55px 35px;
+    width: min(100%, 760px);
+    padding: clamp(35px, 7vw, 65px) clamp(18px, 5vw, 55px);
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.65);
-    border-radius: 30px;
-    background: rgba(255,255,255,0.38);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    box-shadow: 0 20px 65px rgba(100,80,120,0.13);
-    animation: enter 1.5s cubic-bezier(.2,.8,.2,1) both;
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 32px;
+    background: rgba(255,255,255,0.43);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+        0 25px 80px rgba(100,80,120,0.13),
+        inset 0 1px 1px rgba(255,255,255,0.8);
+    animation: enter 1.4s cubic-bezier(.2,.8,.2,1) both;
 }
 
 @keyframes enter {
@@ -144,36 +189,35 @@ body {
 }
 
 .subtitle {
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: #8c7c9b;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     opacity: 0;
-    animation: fade 1s ease 0.5s forwards;
+    animation: fade 1s ease 0.4s forwards;
 }
 
 h1 {
-    font-size: clamp(65px, 13vw, 105px);
+    font-size: clamp(55px, 13vw, 105px);
     font-weight: 300;
-    letter-spacing: -5px;
-    line-height: 1.1;
+    letter-spacing: -3px;
+    line-height: 1.08;
     color: #695879;
-    margin-bottom: 5px;
+    margin: 0 auto 5px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
     opacity: 0;
-    animation: fade 1.1s ease 0.7s forwards;
+    animation: fade 1s ease 0.6s forwards;
 }
 
 .main-label {
-    font-size: 19px;
+    font-size: 18px;
     color: #85758f;
     margin-bottom: 38px;
     opacity: 0;
-    animation: fade 1s ease 0.9s forwards;
-}
-
-@keyframes fade {
-    to { opacity: 1; }
+    animation: fade 1s ease 0.8s forwards;
 }
 
 .divider {
@@ -182,31 +226,33 @@ h1 {
     background: rgba(120,100,140,0.35);
     margin: 0 auto 30px;
     opacity: 0;
-    animation: fade 1s ease 1.1s forwards;
+    animation: fade 1s ease 1s forwards;
 }
 
 .details {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 10px;
     opacity: 0;
-    animation: fade 1s ease 1.2s forwards;
+    animation: fade 1s ease 1.1s forwards;
 }
 
 .unit {
-    padding: 16px 5px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.35);
-    border: 1px solid rgba(255,255,255,0.45);
+    min-width: 0;
+    padding: 17px 5px;
+    border-radius: 17px;
+    background: rgba(255,255,255,0.38);
+    border: 1px solid rgba(255,255,255,0.55);
+    box-shadow: 0 5px 20px rgba(100,80,120,0.035);
 }
 
 .number {
-    font-size: clamp(21px, 5vw, 32px);
+    display: inline-block;
+    font-size: clamp(19px, 3.5vw, 30px);
     font-weight: 400;
     color: #6d5b7c;
     font-variant-numeric: tabular-nums;
-    display: inline-block;
-    min-width: 1.5em;
+    white-space: nowrap;
 }
 
 .number.changed {
@@ -215,8 +261,8 @@ h1 {
 
 @keyframes numberChange {
     0% {
-        opacity: 0.3;
-        transform: translateY(-9px);
+        opacity: 0.2;
+        transform: translateY(-8px);
     }
     100% {
         opacity: 1;
@@ -226,9 +272,9 @@ h1 {
 
 .label {
     display: block;
-    margin-top: 7px;
+    margin-top: 8px;
     font-size: 10px;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     color: #94869e;
 }
@@ -239,29 +285,45 @@ h1 {
     letter-spacing: 1px;
     color: #9a8ba3;
     opacity: 0;
-    animation: fade 1s ease 1.5s forwards;
+    animation: fade 1s ease 1.4s forwards;
 }
 
-@media (max-width: 480px) {
+@keyframes fade {
+    to { opacity: 1; }
+}
+
+/* PANTALLES PETITES */
+
+@media (max-width: 520px) {
     .container {
-        padding: 42px 16px;
+        padding: 38px 16px;
+        border-radius: 25px;
+    }
+
+    h1 {
+        font-size: clamp(48px, 16vw, 76px);
     }
 
     .details {
-        gap: 5px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
     }
 
     .unit {
-        padding: 13px 2px;
+        padding: 13px 3px;
+    }
+
+    .number {
+        font-size: clamp(20px, 6vw, 27px);
     }
 
     .label {
-        font-size: 8px;
-        letter-spacing: 0.5px;
+        font-size: 9px;
+        letter-spacing: 0.7px;
     }
 
     .main-label {
-        margin-bottom: 28px;
+        margin-bottom: 30px;
     }
 }
 
@@ -269,7 +331,7 @@ h1 {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }
 </style>
@@ -277,15 +339,19 @@ h1 {
 
 <body>
 
-<div class="light" id="light"></div>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+<div class="ambient">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="orb orb4"></div>
+</div>
+
 <div class="particles" id="particles"></div>
+<div class="cursor-light" id="cursorLight"></div>
 
 <main class="container">
 
-    <div class="subtitle">Una història que continua</div>
+    <div class="subtitle">La novel·la s'ha estat escrivint durant:</div>
 
     <h1 id="totalDays">0</h1>
     <div class="main-label">dies junts</div>
@@ -305,33 +371,33 @@ h1 {
         </div>
 
         <div class="unit">
-            <span class="number" id="hours">0</span>
+            <span class="number" id="hours">00</span>
             <span class="label">Hores</span>
         </div>
 
         <div class="unit">
-            <span class="number" id="minutes">0</span>
+            <span class="number" id="minutes">00</span>
             <span class="label">Minuts</span>
         </div>
 
         <div class="unit">
-            <span class="number" id="seconds">0</span>
+            <span class="number" id="seconds">00</span>
             <span class="label">Segons</span>
         </div>
 
     </div>
 
     <div class="footer">
-        I encara ens queda molt per viure.
+        I encara queden molts capítols
     </div>
 
 </main>
 
 <script>
-// DATA D'INICI: 4 NOVEMBRE 2025, A LES 18:00
-// Hora local del navegador.
+// DATA EXACTA D'INICI
+// 4 de novembre de 2025 a les 18:00, hora de Girona (CET).
 
-const inici = new Date(2025, 10, 4, 18, 0, 0);
+const inici = new Date("2025-11-04T18:00:00+01:00");
 
 const elements = {
     totalDays: document.getElementById("totalDays"),
@@ -349,7 +415,6 @@ function actualitzarNumero(element, valor, clau) {
         element.textContent = valor;
         element.classList.remove("changed");
 
-        // Reinicia l'animació perquè també funcioni en canvis seguits.
         void element.offsetWidth;
 
         element.classList.add("changed");
@@ -359,10 +424,7 @@ function actualitzarNumero(element, valor, clau) {
 
 function calcularTemps() {
     const ara = new Date();
-    let diferencia = ara.getTime() - inici.getTime();
-
-    // Evita valors negatius si s'obre abans de la data inicial.
-    if (diferencia < 0) diferencia = 0;
+    const diferencia = Math.max(0, ara.getTime() - inici.getTime());
 
     const totalSegons = Math.floor(diferencia / 1000);
     const totalDies = Math.floor(totalSegons / 86400);
@@ -371,15 +433,17 @@ function calcularTemps() {
     const minuts = Math.floor((totalSegons % 3600) / 60);
     const segons = totalSegons % 60;
 
-    // Mesos i dies de calendari des de la data inicial.
+    // Calcula mesos i dies de calendari.
     let mesos = 0;
-    let cursor = new Date(inici);
+    let cursor = new Date(inici.getTime());
 
     while (true) {
-        const seguent = new Date(cursor);
+        const seguent = new Date(cursor.getTime());
         seguent.setMonth(seguent.getMonth() + 1);
 
-        if (següent.getTime() > ara.getTime()) break;
+        if (seguent.getTime() > ara.getTime()) {
+            break;
+        }
 
         cursor = seguent;
         mesos++;
@@ -392,34 +456,48 @@ function calcularTemps() {
     actualitzarNumero(elements.totalDays, totalDies, "totalDays");
     actualitzarNumero(elements.months, mesos, "months");
     actualitzarNumero(elements.days, diesRestants, "days");
-    actualitzarNumero(elements.hours, hores, "hours");
-    actualitzarNumero(elements.minutes, minuts, "minutes");
-    actualitzarNumero(elements.seconds, segons, "seconds");
+    actualitzarNumero(elements.hours, String(hores).padStart(2, "0"), "hours");
+    actualitzarNumero(elements.minutes, String(minuts).padStart(2, "0"), "minutes");
+    actualitzarNumero(elements.seconds, String(segons).padStart(2, "0"), "seconds");
 }
 
-// Actualitza el comptador cada segon.
+// Executa el càlcul immediatament i després cada segon.
 calcularTemps();
 setInterval(calcularTemps, 1000);
 
-// Partícules decoratives.
+// CREA PARTÍCULES ALEATÒRIES.
 const particles = document.getElementById("particles");
 
-for (let i = 0; i < 24; i++) {
+for (let i = 0; i < 32; i++) {
     const p = document.createElement("div");
     p.className = "particle";
+
+    const mida = 2 + Math.random() * 4;
+    p.style.width = mida + "px";
+    p.style.height = mida + "px";
     p.style.left = Math.random() * 100 + "%";
-    p.style.animationDuration = (9 + Math.random() * 14) + "s";
-    p.style.animationDelay = (-Math.random() * 20) + "s";
-    p.style.opacity = 0.2 + Math.random() * 0.5;
+    p.style.animationDuration = (10 + Math.random() * 18) + "s";
+    p.style.animationDelay = (-Math.random() * 25) + "s";
+
     particles.appendChild(p);
 }
 
-// Llum suau que segueix el cursor.
+// LLUM QUE SEGUEIX EL RATOLÍ.
+const cursorLight = document.getElementById("cursorLight");
+
 document.addEventListener("mousemove", (e) => {
-    const light = document.getElementById("light");
-    light.style.left = (e.clientX - 225) + "px";
-    light.style.top = (e.clientY - 225) + "px";
+    cursorLight.style.left = e.clientX + "px";
+    cursorLight.style.top = e.clientY + "px";
 });
+
+// En mòbils, evita deixar la llum en una posició estranya.
+document.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 0) {
+        cursorLight.style.left = e.touches[0].clientX + "px";
+        cursorLight.style.top = e.touches[0].clientY + "px";
+    }
+}, { passive: true });
+
 </script>
 
 </body>
