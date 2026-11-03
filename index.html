@@ -1,72 +1,256 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secret Portal</title>
+
+<title>El meu espai secret</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background: #090909;
-    color: white;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: #514c65;
+
+    background:
+        radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+        rgba(255,255,255,0.8), transparent 32%),
+        linear-gradient(135deg,
+        #e8ddfa, #d9e9f8, #f9e2eb, #f8edda);
+
+    background-size: 100% 100%;
+    transition: background-position 0.2s;
 }
 
+/* Formes decoratives del fons */
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.5;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+.orb.one {
+    width: 180px;
+    height: 180px;
+    background: #d4c0f5;
+    top: 10%;
+    left: 12%;
+}
+
+.orb.two {
+    width: 230px;
+    height: 230px;
+    background: #f5cddd;
+    bottom: 5%;
+    right: 10%;
+    animation-delay: -3s;
+}
+
+.orb.three {
+    width: 100px;
+    height: 100px;
+    background: #c6e3f5;
+    top: 65%;
+    left: 20%;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-22px);
+    }
+}
+
+/* Targeta principal */
+
 .container {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 430px);
+    padding: 55px 40px;
     text-align: center;
-    width: 85%;
-    max-width: 400px;
+
+    background: rgba(255,255,255,0.48);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 28px;
+
+    box-shadow:
+        0 25px 70px rgba(103, 88, 139, 0.15),
+        inset 0 1px 2px rgba(255,255,255,0.8);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 32px 80px rgba(103, 88, 139, 0.2);
+}
+
+.small-title {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #9385ac;
+    text-transform: uppercase;
 }
 
 h1 {
-    font-size: 30px;
-    letter-spacing: 5px;
-    font-weight: 300;
+    font-size: 32px;
+    font-weight: 500;
+    margin: 17px 0 10px;
+    color: #655779;
 }
 
-p {
-    color: #888;
-    font-size: 12px;
-    letter-spacing: 2px;
+.description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #89819b;
 }
+
+/* Entrada del codi */
 
 input {
-    background: transparent;
-    border: 1px solid #555;
-    color: white;
-    padding: 15px;
-    width: 85%;
-    margin-top: 25px;
+    width: 100%;
+    margin-top: 28px;
+    padding: 16px;
+    border-radius: 13px;
+
+    border: 1px solid rgba(160,145,185,0.25);
+    background: rgba(255,255,255,0.65);
+
+    color: #625773;
+    font-size: 15px;
     text-align: center;
     outline: none;
+
+    transition: all 0.3s ease;
 }
 
-button {
+input::placeholder {
+    color: #b1a9bd;
+}
+
+input:focus {
+    border-color: #b9a5dc;
+    box-shadow: 0 0 0 4px rgba(185,165,220,0.17);
     background: white;
-    color: black;
+}
+
+/* Botó */
+
+button {
+    margin-top: 17px;
+    width: 100%;
+    padding: 16px;
+
     border: none;
-    padding: 13px 30px;
-    margin-top: 20px;
-    cursor: pointer;
+    border-radius: 13px;
+
+    background: linear-gradient(135deg, #bba6dc, #d4b2d7);
+    color: white;
+
+    font-size: 13px;
+    font-weight: 600;
     letter-spacing: 2px;
+
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(153,126,190,0.2);
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 13px 25px rgba(153,126,190,0.3);
+    filter: brightness(1.06);
+}
+
+button:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #a49bb3;
+    letter-spacing: 1px;
+}
+
+/* Mòbil */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 42px 25px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-    <h1>SECRET PORTAL</h1>
-    <p>ENTER YOUR ACCESS CODE</p>
 
-    <input type="text" placeholder="Enter code">
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="orb three"></div>
 
-    <br>
-    <button>ACCESS</button>
-</div>
+<main class="container">
+
+    <div class="small-title">Un petit espai especial</div>
+
+    <h1>Benvingut/da</h1>
+
+    <p class="description">
+        Hi ha coses que només s'obren<br>
+        amb la clau adequada.
+    </p>
+
+    <input
+        type="text"
+        placeholder="Escriu el teu codi..."
+        autocomplete="off"
+    >
+
+    <button>ACCEDIR</button>
+
+    <div class="footer">
+        UN LLOC PER DESCOBRIR
+    </div>
+
+</main>
+
+<script>
+document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+
+    document.body.style.setProperty("--x", x + "%");
+    document.body.style.setProperty("--y", y + "%");
+});
+</script>
+
 </body>
 </html>
