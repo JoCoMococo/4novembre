@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>365 dies</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: #51465e;
+    background: linear-gradient(135deg,
+        #e8dff5, #dce9f5, #f5e1e9, #f8eedf);
+    background-size: 300% 300%;
+    animation: backgroundMove 18s ease infinite;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.light {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.32);
+    filter: blur(90px);
+    pointer-events: none;
+    top: -150px;
+    left: -150px;
+}
+
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(45px);
+    opacity: 0.45;
+    pointer-events: none;
+    animation: float 12s ease-in-out infinite alternate;
+}
+
+.orb1 {
+    width: 260px;
+    height: 260px;
+    background: #e9c9e8;
+    bottom: -80px;
+    left: 5%;
+}
+
+.orb2 {
+    width: 300px;
+    height: 300px;
+    background: #c9dff0;
+    top: 5%;
+    right: -80px;
+    animation-delay: -5s;
+}
+
+.orb3 {
+    width: 180px;
+    height: 180px;
+    background: #f5d8d0;
+    bottom: 10%;
+    right: 15%;
+    animation-delay: -3s;
+}
+
+@keyframes float {
+    from { transform: translateY(0) translateX(0); }
+    to { transform: translateY(-35px) translateX(20px); }
+}
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.6;
+    animation: rise linear infinite;
+}
+
+@keyframes rise {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.5; }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 650px);
+    padding: 55px 35px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 30px;
+    background: rgba(255,255,255,0.38);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 20px 65px rgba(100,80,120,0.13);
+    animation: enter 1.5s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+        filter: blur(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.subtitle {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8c7c9b;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fade 1s ease 0.5s forwards;
+}
+
+h1 {
+    font-size: clamp(65px, 13vw, 105px);
+    font-weight: 300;
+    letter-spacing: -5px;
+    line-height: 1.1;
+    color: #695879;
+    margin-bottom: 5px;
+    opacity: 0;
+    animation: fade 1.1s ease 0.7s forwards;
+}
+
+.main-label {
+    font-size: 19px;
+    color: #85758f;
+    margin-bottom: 38px;
+    opacity: 0;
+    animation: fade 1s ease 0.9s forwards;
+}
+
+@keyframes fade {
+    to { opacity: 1; }
+}
+
+.divider {
+    width: 65px;
+    height: 1px;
+    background: rgba(120,100,140,0.35);
+    margin: 0 auto 30px;
+    opacity: 0;
+    animation: fade 1s ease 1.1s forwards;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    opacity: 0;
+    animation: fade 1s ease 1.2s forwards;
+}
+
+.unit {
+    padding: 16px 5px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.45);
+}
+
+.number {
+    font-size: clamp(21px, 5vw, 32px);
+    font-weight: 400;
+    color: #6d5b7c;
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    min-width: 1.5em;
+}
+
+.number.changed {
+    animation: numberChange 0.35s ease;
+}
+
+@keyframes numberChange {
+    0% {
+        opacity: 0.3;
+        transform: translateY(-9px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.label {
+    display: block;
+    margin-top: 7px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #94869e;
+}
+
+.footer {
+    margin-top: 35px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #9a8ba3;
+    opacity: 0;
+    animation: fade 1s ease 1.5s forwards;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 42px 16px;
+    }
+
+    .details {
+        gap: 5px;
+    }
+
+    .unit {
+        padding: 13px 2px;
+    }
+
+    .label {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .main-label {
+        margin-bottom: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="light" id="light"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div class="particles" id="particles"></div>
+
+<main class="container">
+
+    <div class="subtitle">Una història que continua</div>
+
+    <h1 id="totalDays">0</h1>
+    <div class="main-label">dies junts</div>
+
+    <div class="divider"></div>
+
+    <div class="details">
+
+        <div class="unit">
+            <span class="number" id="months">0</span>
+            <span class="label">Mesos</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="days">0</span>
+            <span class="label">Dies</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="hours">0</span>
+            <span class="label">Hores</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="minutes">0</span>
+            <span class="label">Minuts</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="seconds">0</span>
+            <span class="label">Segons</span>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        I encara ens queda molt per viure.
+    </div>
+
+</main>
+
+<script>
+// DATA D'INICI: 4 NOVEMBRE 2025, A LES 18:00
+// Hora local del navegador.
+
+const inici = new Date(2025, 10, 4, 18, 0, 0);
+
+const elements = {
+    totalDays: document.getElementById("totalDays"),
+    months: document.getElementById("months"),
+    days: document.getElementById("days"),
+    hours: document.getElementById("hours"),
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("seconds")
+};
+
+const valorsAnteriors = {};
+
+function actualitzarNumero(element, valor, clau) {
+    if (valorsAnteriors[clau] !== valor) {
+        element.textContent = valor;
+        element.classList.remove("changed");
+
+        // Reinicia l'animació perquè també funcioni en canvis seguits.
+        void element.offsetWidth;
+
+        element.classList.add("changed");
+        valorsAnteriors[clau] = valor;
+    }
+}
+
+function calcularTemps() {
+    const ara = new Date();
+    let diferencia = ara.getTime() - inici.getTime();
+
+    // Evita valors negatius si s'obre abans de la data inicial.
+    if (diferencia < 0) diferencia = 0;
+
+    const totalSegons = Math.floor(diferencia / 1000);
+    const totalDies = Math.floor(totalSegons / 86400);
+
+    const hores = Math.floor((totalSegons % 86400) / 3600);
+    const minuts = Math.floor((totalSegons % 3600) / 60);
+    const segons = totalSegons % 60;
+
+    // Mesos i dies de calendari des de la data inicial.
+    let mesos = 0;
+    let cursor = new Date(inici);
+
+    while (true) {
+        const seguent = new Date(cursor);
+        seguent.setMonth(seguent.getMonth() + 1);
+
+        if (següent.getTime() > ara.getTime()) break;
+
+        cursor = seguent;
+        mesos++;
+    }
+
+    const diesRestants = Math.floor(
+        (ara.getTime() - cursor.getTime()) / 86400000
+    );
+
+    actualitzarNumero(elements.totalDays, totalDies, "totalDays");
+    actualitzarNumero(elements.months, mesos, "months");
+    actualitzarNumero(elements.days, diesRestants, "days");
+    actualitzarNumero(elements.hours, hores, "hours");
+    actualitzarNumero(elements.minutes, minuts, "minutes");
+    actualitzarNumero(elements.seconds, segons, "seconds");
+}
+
+// Actualitza el comptador cada segon.
+calcularTemps();
+setInterval(calcularTemps, 1000);
+
+// Partícules decoratives.
+const particles = document.getElementById("particles");
+
+for (let i = 0; i < 24; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = (9 + Math.random() * 14) + "s";
+    p.style.animationDelay = (-Math.random() * 20) + "s";
+    p.style.opacity = 0.2 + Math.random() * 0.5;
+    particles.appendChild(p);
+}
+
+// Llum suau que segueix el cursor.
+document.addEventListener("mousemove", (e) => {
+    const light = document.getElementById("light");
+    light.style.left = (e.clientX - 225) + "px";
+    light.style.top = (e.clientY - 225) + "px";
+});
+</script>
+
+</body>
+</html>
