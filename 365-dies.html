@@ -292,6 +292,169 @@ h1 {
     to { opacity: 1; }
 }
 
+
+
+/* ENLLAÇ A LA SEGÜENT SECCIÓ */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 28px;
+}
+
+body {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.next-section-link {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 18px 14px;
+    color: #766783;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fade 1s ease 1.7s forwards;
+}
+
+.next-section-link .arrow {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.38);
+    box-shadow: 0 5px 20px rgba(100,80,120,0.08);
+    font-size: 23px;
+    line-height: 1;
+    animation: arrowFloat 1.8s ease-in-out infinite;
+}
+
+.next-section-link:hover .arrow {
+    background: rgba(255,255,255,0.7);
+}
+
+@keyframes arrowFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(7px); }
+}
+
+/* ZONA EN CONSTRUCCIÓ */
+.construction-section {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 760px);
+    min-height: 390px;
+    margin-bottom: 35px;
+    padding: 75px 28px 65px;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.72);
+    border-radius: 30px;
+    background: rgba(255,255,255,0.48);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 65px rgba(100,80,120,0.12);
+    scroll-margin-top: 25px;
+}
+
+.construction-section h2 {
+    margin: 25px 0 12px;
+    color: #665673;
+    font-size: clamp(23px, 5vw, 34px);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.construction-section p {
+    color: #897b91;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.warning-tape {
+    position: absolute;
+    left: -8%;
+    width: 116%;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #24211c;
+    background: repeating-linear-gradient(
+        135deg,
+        #f6d45c 0px,
+        #f6d45c 24px,
+        #25231f 24px,
+        #25231f 43px
+    );
+    box-shadow: 0 3px 9px rgba(0,0,0,0.15);
+    transform: rotate(-3deg);
+}
+
+.warning-tape span {
+    padding: 5px 18px;
+    background: #f6d45c;
+    border: 2px solid #25231f;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.warning-tape.top { top: 28px; }
+.warning-tape.bottom {
+    bottom: 28px;
+    transform: rotate(3deg);
+}
+
+.work-zone {
+    width: min(100%, 390px);
+    margin: 25px auto 0;
+    padding: 23px 18px 20px;
+    border: 2px dashed rgba(126,108,137,0.38);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.32);
+}
+
+.work-icon {
+    font-size: 48px;
+    line-height: 1.2;
+    filter: drop-shadow(0 5px 5px rgba(90,70,50,0.12));
+}
+
+.work-status {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 9px 13px;
+    border-radius: 5px;
+    color: #342b1b;
+    background: #f6d45c;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    box-shadow: 0 3px 0 #c9a83d;
+}
+
+@media (max-width: 520px) {
+    body { gap: 20px; }
+    .construction-section {
+        min-height: 360px;
+        padding: 72px 17px 65px;
+        border-radius: 24px;
+    }
+    .warning-tape { height: 34px; }
+    .warning-tape span { font-size: 9px; letter-spacing: 1.2px; }
+}
+
+
 /* PANTALLES PETITES */
 
 @media (max-width: 520px) {
@@ -392,6 +555,25 @@ h1 {
     </div>
 
 </main>
+
+<a class="next-section-link" href="#que-ha-passat" aria-label="Ves a què ha passat durant aquest temps">
+    <span>Què ha passat durant aquest temps?</span>
+    <span class="arrow" aria-hidden="true">↓</span>
+</a>
+
+<section class="construction-section" id="que-ha-passat">
+    <div class="warning-tape top"><span>ZONA RESTRINGIDA · EN OBRES</span></div>
+
+    <p>Petu, encara no tinc aquesta part feta, o potser si... (:</p>
+
+    <div class="work-zone">
+        <div class="work-icon" aria-hidden="true">🚧</div>
+        <div class="work-status">AQUESTA ZONA ESTÀ EN PROCÉS</div>
+    </div>
+
+    <div class="warning-tape bottom"><span>DISCULPEU LES MOLÈSTIES</span></div>
+</section>
+
 
 <script>
 // DATA EXACTA D'INICI
