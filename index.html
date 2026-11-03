@@ -4,12 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La seva web</title>
+<title>El teu espai</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 :root {
     --purple: #a994c9;
@@ -72,12 +70,8 @@ body {
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-22px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-22px); }
 }
 
 /* PARTÍCULES */
@@ -99,20 +93,10 @@ body {
 }
 
 @keyframes drift {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.4;
-    }
-    80% {
-        opacity: 0.3;
-    }
-    to {
-        transform: translateY(-100px);
-        opacity: 0;
-    }
+    from { transform: translateY(20px); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.3; }
+    to { transform: translateY(-100px); opacity: 0; }
 }
 
 /* TARGETA PRINCIPAL */
@@ -141,18 +125,12 @@ body {
 }
 
 .container:hover {
-    box-shadow:
-        0 32px 75px rgba(111,92,145,0.19);
+    box-shadow: 0 32px 75px rgba(111,92,145,0.19);
 }
 
 @keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; }
 }
 
 h1 {
@@ -169,7 +147,7 @@ h1 {
     color: #8e849d;
 }
 
-/* ENTRADA DEL CODI */
+/* ENTRADA */
 
 input {
     width: 100%;
@@ -185,9 +163,7 @@ input {
     transition: all 0.3s ease;
 }
 
-input::placeholder {
-    color: #aaa1b7;
-}
+input::placeholder { color: #aaa1b7; }
 
 input:focus {
     border-color: #b9a5dc;
@@ -218,11 +194,9 @@ button:hover {
     box-shadow: 0 13px 25px rgba(153,126,190,0.25);
 }
 
-button:active {
-    transform: translateY(-1px);
-}
+button:active { transform: translateY(-1px); }
 
-/* COMPTADOR DE CODIS */
+/* COMPTADOR */
 
 .code-counter {
     position: fixed;
@@ -239,18 +213,14 @@ button:active {
 
     background: rgba(255,255,255,0.42);
     border: 1px solid rgba(255,255,255,0.7);
-
     box-shadow: 0 8px 25px rgba(111,92,145,0.08);
 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
     transition: transform 0.3s ease;
 }
 
-.code-counter:hover {
-    transform: translateY(-3px);
-}
+.code-counter:hover { transform: translateY(-3px); }
 
 .counter-flower {
     width: 34px;
@@ -290,24 +260,11 @@ button:active {
     animation: breeze 5s ease-in-out infinite;
 }
 
-/* MOVIMENT DEL VENT */
-
 @keyframes breeze {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(1.8deg);
-    }
-
-    50% {
-        transform: rotate(0deg);
-    }
-
-    75% {
-        transform: rotate(-1.8deg);
-    }
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1.8deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-1.8deg); }
 }
 
 .flower-plant svg {
@@ -316,8 +273,6 @@ button:active {
     overflow: visible;
 }
 
-/* TIJA */
-
 .stem {
     fill: none;
     stroke: #879b91;
@@ -325,23 +280,17 @@ button:active {
     stroke-linecap: round;
 }
 
-/* FULLES */
-
 .leaf {
     fill: #a5b6a8;
     stroke: #82988a;
     stroke-width: 1.3;
 }
 
-/* CENTRE DE LA FLOR */
-
 .flower-center {
     fill: #d9bb87;
     stroke: #b69b78;
     stroke-width: 1.5;
 }
-
-/* PÈTALS */
 
 .petal {
     fill: #d5a9d2;
@@ -353,17 +302,11 @@ button:active {
 }
 
 @keyframes grow {
-    from {
-        opacity: 0;
-        transform: scale(0.1);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.1); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* ADAPTACIÓ A MÒBILS */
+/* MÒBILS */
 
 @media (max-width: 700px) {
     .flower-plant {
@@ -373,13 +316,8 @@ button:active {
         opacity: 0.65;
     }
 
-    .container {
-        padding: 45px 26px;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
+    .container { padding: 45px 26px; }
+    h1 { font-size: 30px; }
 
     .code-counter {
         top: 16px;
@@ -387,8 +325,6 @@ button:active {
         padding: 8px 11px;
     }
 }
-
-/* ACCESSIBILITAT */
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -406,7 +342,6 @@ button:active {
 <div class="orb one"></div>
 <div class="orb two"></div>
 <div class="orb three"></div>
-
 <div class="particles" id="particles"></div>
 
 <!-- COMPTADOR -->
@@ -433,57 +368,46 @@ button:active {
     </svg>
 
     <div>
-        <div class="counter-number" id="counter">0</div>
+        <div class="counter-number" id="counter">1</div>
         <div class="counter-label">Codis disponibles</div>
     </div>
 
 </div>
 
-<!-- FLOR GRAN DE L'ESQUERRA -->
+<!-- FLOR GRAN -->
 
 <div class="flower-plant">
-
     <svg viewBox="0 0 140 600"
          preserveAspectRatio="xMidYMax meet">
 
-        <!-- TIJA -->
         <path class="stem"
-              d="M70 105
-                 C57 210 82 285 68 375
+              d="M70 105 C57 210 82 285 68 375
                  C60 450 76 510 70 600"/>
 
-        <!-- FULLA INFERIOR -->
         <path class="leaf"
-              d="M68 440
-                 C30 410 13 429 68 452
+              d="M68 440 C30 410 13 429 68 452
                  C47 433 40 424 68 440Z"/>
 
-        <!-- FULLA SUPERIOR -->
         <path class="leaf"
-              d="M70 300
-                 C105 270 127 282 70 315
+              d="M70 300 C105 270 127 282 70 315
                  C91 290 105 283 70 300Z"/>
 
-        <!-- CENTRE -->
         <circle class="flower-center"
                 cx="70" cy="105" r="10"/>
 
-        <!-- PÈTALS DINÀMICS -->
         <g id="petals"></g>
-
     </svg>
-
 </div>
 
 <!-- TARGETA PRINCIPAL -->
 
 <main class="container" id="card">
 
-    <h1>La seva web</h1>
+    <h1>El teu espai</h1>
 
     <p class="description">
-        Necessites els codis per canviar<br>
-         i passar a la següent web.
+        Hi ha coses que només s'obren<br>
+        amb la clau adequada.
     </p>
 
     <input
@@ -493,7 +417,7 @@ button:active {
         autocomplete="off"
     >
 
-    <button type="button">
+    <button type="button" id="accessButton">
         ACCEDIR
     </button>
 
@@ -501,24 +425,21 @@ button:active {
 
 <script>
 
-// MOVIMENT DE LA LLUM DEL FONS
+// LLUM DEL FONS
 
 document.addEventListener("mousemove", (e) => {
-
     const x = e.clientX / window.innerWidth * 100;
     const y = e.clientY / window.innerHeight * 100;
 
     document.body.style.setProperty("--x", x + "%");
     document.body.style.setProperty("--y", y + "%");
-
 });
 
-// EFECTE 3D DE LA TARGETA
+// EFECTE 3D
 
 const card = document.getElementById("card");
 
 document.addEventListener("mousemove", (e) => {
-
     if (window.innerWidth < 700) return;
 
     const x = (e.clientX / window.innerWidth - 0.5) * 4;
@@ -526,22 +447,18 @@ document.addEventListener("mousemove", (e) => {
 
     card.style.transform =
         `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
-
 });
 
 document.addEventListener("mouseleave", () => {
-
     card.style.transform =
         "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-
 });
 
-// PARTÍCULES DECORATIVES
+// PARTÍCULES
 
 const particleArea = document.getElementById("particles");
 
 for (let i = 0; i < 22; i++) {
-
     const p = document.createElement("div");
 
     p.className = "particle";
@@ -551,13 +468,11 @@ for (let i = 0; i < 22; i++) {
     p.style.animationDelay = (-Math.random() * 12) + "s";
 
     particleArea.appendChild(p);
-
 }
 
-// FLOR QUE CREIX SEGONS ELS CODIS
+// FLOR I COMPTADOR
 
 function actualitzarFlor(nombreCodis) {
-
     const grup = document.getElementById("petals");
     const comptador = document.getElementById("counter");
 
@@ -567,7 +482,6 @@ function actualitzarFlor(nombreCodis) {
     grup.innerHTML = "";
 
     for (let i = 0; i < nombre; i++) {
-
         const angle = -90 + (360 / nombre) * i;
 
         const petal = document.createElementNS(
@@ -588,14 +502,35 @@ function actualitzarFlor(nombreCodis) {
         petal.style.animationDelay = (i * 0.08) + "s";
 
         grup.appendChild(petal);
-
     }
-
 }
 
-// INICI: CAP CODI DISPONIBLE
+// UN CODI DISPONIBLE
 
-actualitzarFlor(0);
+actualitzarFlor(1);
+
+// COMPROVAR EL CODI
+
+const input = document.getElementById("code");
+const button = document.getElementById("accessButton");
+
+function comprovarCodi() {
+    const codi = input.value.trim();
+
+    if (codi === "41125") {
+        window.location.href = "365-dies.html";
+    } else {
+        alert("Aquest codi no és correcte.");
+    }
+}
+
+button.addEventListener("click", comprovarCodi);
+
+input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        comprovarCodi();
+    }
+});
 
 </script>
 
